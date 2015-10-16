@@ -11,21 +11,30 @@ namespace Models
 
         public string Body { get; set; }
 
-        public DateTime Date { get; set; }
+        public DateTime Created { get; set; }
+
+        public DateTime? LastEdited { get; set; }
 
         public string Author { get; set; }
 
 
         public Post()
         {
-            
+
         }
 
-        public Post(int id , string body, DateTime date, string author)
+        public Post(string body, DateTime creationDate, string author)
         {
-            this.Id = ObjectId.Parse(id.ToString());
             this.Body = body;
-            this.Date = date;
+            this.Created = creationDate;
+            this.Author = author;
+        }
+
+        public Post(ObjectId id, string body, DateTime creationDate, string author)
+        {
+            this.Id = id;
+            this.Body = body;
+            this.Created = creationDate;
             this.Author = author;
         }
     }

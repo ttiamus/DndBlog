@@ -1,34 +1,56 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using System.Web.Script.Serialization;
 using Models;
+using MongoDB.Bson;
+using MongoDB.Driver;
+using MongoDB.Driver.Linq;
 
-namespace DALNew
+namespace Blog.DAL
 {
     public class PostRepo
     {
-        public void CreatePost(Post post)
+        public async void CreatePost(Post post)
         {
-            
+            //initlaize connection
+            var client = new MongoClient();
+            //get db you are working with
+            var db = client.GetDatabase("test");
+            //get or create table
+            var posts = db.GetCollection<Post>("BlogPosts");
+            await posts.InsertOneAsync(post);
         }
 
-        public List<Post> GetPosts()
+        public List<Post>  GetPosts()
         {
-            return new List<Post>();
+            //initlaize connection
+            var client = new MongoClient();
+            //get db you are working with
+            var db = client.GetDatabase("test");
+            var posts = db.GetCollection<Post>("BlogPosts").Find(post => true).ToListAsync().Result;
+            
+            return posts;
         }
 
         public Post GetPost(int id)
         {
-            return new Post();
+            //initlaize connection
+            var client = new MongoClient();
+            //get db you are working with
+            var db = client.GetDatabase("test");
+            var posts = db.GetCollection<Post>("BlogPosts");
+            var post = posts.Find(blogPost => blogPost.Author == "Ttiamus").FirstOrDefaultAsync().Result;
+
+            
+            return post;
         }
 
-        public void UpdatePost(Post post)
+        public async void UpdatePost(Post post)
         {
 
         }
 
-        public void DeletePost(int id)
+        public async void DeletePost(int id)
         {
             
         }

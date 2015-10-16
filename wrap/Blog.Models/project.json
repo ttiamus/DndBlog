@@ -1,0 +1,16 @@
+{
+  "version": "1.0.0-*",
+  "frameworks": {
+    "net452": {
+      "wrappedProject": "../../Models/Blog.Models.csproj",
+      "bin": {
+        "assembly": "../../Models/obj/{configuration}/Blog.Models.dll",
+        "pdb": "../../Models/obj/{configuration}/Blog.Models.pdb"
+      },
+      "dependencies": {
+        "Microsoft.CodeDom.Providers.DotNetCompilerPlatform": "1.0.0",
+        "Microsoft.Net.Compilers": "1.0.0"
+      }
+    }
+  }
+}

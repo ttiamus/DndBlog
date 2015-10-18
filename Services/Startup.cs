@@ -4,15 +4,14 @@ using System.Linq;
 using Microsoft.Owin;
 using Owin;
 
-[assembly: OwinStartup(typeof(WebApplication1.Startup))]
-
-namespace WebApplication1
+//[assembly: OwinStartup(typeof(Blog.Services.Startup))]
+namespace Blog.Services
 {
     public partial class Startup
     {
         public void Configuration(IAppBuilder app)
         {
-            ConfigureAuth(app);
+            //ConfigureAuth(app);
         }
     }
 }

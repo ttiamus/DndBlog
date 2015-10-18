@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
 
-namespace DndBlog
+namespace Blog.Web
 {
     public static class WebApiConfig
     {

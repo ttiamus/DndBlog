@@ -1,5 +1,6 @@
 ﻿using System;
 using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
 
 namespace Models
 {
@@ -7,7 +8,12 @@ namespace Models
     // To enable this option, right-click on the project and select the Properties menu item. In the Build tab select "Produce outputs on build".
     public class Post
     {
-        public ObjectId Id { get; set; }
+        [BsonId]
+        public string Id { get; set; }
+
+        public string Author { get; set; }
+
+        public string Title { get; set; }
 
         public string Body { get; set; }
 
@@ -15,27 +21,17 @@ namespace Models
 
         public DateTime? LastEdited { get; set; }
 
-        public string Author { get; set; }
-
-
         public Post()
         {
 
         }
 
-        public Post(string body, DateTime creationDate, string author)
+        public Post(string author, string title, string body)
         {
-            this.Body = body;
-            this.Created = creationDate;
             this.Author = author;
-        }
-
-        public Post(ObjectId id, string body, DateTime creationDate, string author)
-        {
-            this.Id = id;
+            this.Title = title;
             this.Body = body;
-            this.Created = creationDate;
-            this.Author = author;
+            this.Created = DateTime.Now;
         }
     }
 }

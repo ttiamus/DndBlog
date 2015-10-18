@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Optimization;
 
-namespace DndBlog
+namespace Blog.Web
 {
     public class BundleConfig
     {

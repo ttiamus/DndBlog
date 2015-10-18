@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Mvc;
 
-namespace DndBlog
+namespace Blog.Web
 {
     public class FilterConfig
     {

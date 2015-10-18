@@ -19,6 +19,11 @@ namespace Blog.Services.Controllers
     {
         private PostService postService = new PostService();
 
+        public PostController()
+        {
+            
+        }
+
         [System.Web.Http.HttpPost]
         public async Task<IHttpActionResult> CreatePost(Post post)
         {

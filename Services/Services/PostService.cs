@@ -32,7 +32,7 @@ namespace Blog.Services.Services
         public async Task<Post> GetPost(string id)
         {
             //return await GetPost(ObjectId.Parse(id));
-            return await postRepo.GetPost(id);
+            return await GetPost(id);
         }
 
         /*public async Task<Post> GetPost(ObjectId id)
@@ -55,7 +55,7 @@ namespace Blog.Services.Services
         public async Task<bool> DeletePost(string id)
         {
             //return await DeletePost(ObjectId.Parse(id));
-            return await postRepo.DeletePost(id);
+            return await DeletePost(id);
         }
 
         /*public async Task<bool> DeletePost(ObjectId id)

@@ -16,8 +16,7 @@ namespace Blog.Web
         {
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
-            BundleConfig.RegisterBundles(BundleTable.Bundles);
-            ModelBinders.Binders.Add(typeof(ObjectId), new ObjectIdModelBinder());
+            BundleConfig.RegisterBundles(BundleTable.Bundles);   
         }
     }
 }

@@ -24,11 +24,11 @@ namespace Blog.DAL
         public PostRepo()
         {
             //initlaize connection
-            Client = new MongoClient();
+            Client = new MongoClient(connectionString);
             //get db you are working with
-            Db = Client.GetDatabase("DndBlog");
+            Db = Client.GetDatabase(blogDatabase);
             //get or create table
-            Posts = Db.GetCollection<Post>("Posts");
+            Posts = Db.GetCollection<Post>(postCollection);
         }
 
 

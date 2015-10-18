@@ -1,29 +1,43 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Runtime.Serialization;
 using System.Threading.Tasks;
 using System.Web.Script.Serialization;
 using Models;
 using MongoDB.Bson;
 using MongoDB.Driver;
+using MongoDB.Driver.Core.Configuration;
 
 namespace Blog.DAL
 {
     public class PostRepo
     {
+        public MongoClient Client { get; set; }
+        public IMongoDatabase Db { get; set; }
+        public IMongoCollection<Post> Posts { get; set; }
+
+        private readonly string connectionString = ConfigurationManager.ConnectionStrings["MongoConnectionString"].ConnectionString;
+        private readonly string blogDatabase = ConfigurationManager.AppSettings["BlogDatabase"];
+        private readonly string postCollection = ConfigurationManager.AppSettings["PostCollection"];
+
+        public PostRepo()
+        {
+            //initlaize connection
+            Client = new MongoClient();
+            //get db you are working with
+            Db = Client.GetDatabase("DndBlog");
+            //get or create table
+            Posts = Db.GetCollection<Post>("Posts");
+        }
+
+
         //Id of the post is added to the object after insertion
         public async Task<bool> CreatePost(Post post)
         {
-            //initlaize connection
-            var client = new MongoClient();
-            //get db you are working with
-            var db = client.GetDatabase("DndBlog");
-            //get or create table
-            var posts = db.GetCollection<Post>("Posts");
-
             try
             {
-                await posts.InsertOneAsync(post);
+                await Posts.InsertOneAsync(post);
             }
             catch (Exception e)
             {
@@ -36,31 +50,16 @@ namespace Blog.DAL
 
         public async Task<Post> GetPost(string id)
         {
-            //initlaize connection
-            var client = new MongoClient();
-            //get db you are working with
-            var db = client.GetDatabase("DndBlog");
-            var posts = db.GetCollection<Post>("Posts");
-            return await posts.Find(blogPost => blogPost.Id == id).FirstOrDefaultAsync();
+            return await Posts.Find(blogPost => blogPost.Id == id).FirstOrDefaultAsync();
         }
 
         public async Task<IEnumerable<Post>> GetPosts()
         {
-            //initlaize connection
-            var client = new MongoClient();
-            //get db you are working with
-            var db = client.GetDatabase("DndBlog");
-            return await db.GetCollection<Post>("Posts").Find(post => true).ToListAsync();
+            return await Posts.Find(post => true).ToListAsync();
         }
 
         public async Task<bool> UpdatePost(Post post)
         {
-            //initlaize connection
-            var client = new MongoClient();
-            //get db you are working with
-            var db = client.GetDatabase("DndBlog");
-            var posts = db.GetCollection<Post>("Posts");
-
             var postToBeUpdated = await GetPost(post.Id);
 
             if (postToBeUpdated == null)
@@ -76,7 +75,7 @@ namespace Blog.DAL
 
             try
             {
-                await posts.ReplaceOneAsync(x => x.Id == post.Id, postToBeUpdated);
+                await Posts.ReplaceOneAsync(x => x.Id == post.Id, postToBeUpdated);
             }
             catch (Exception e)
             {
@@ -88,14 +87,9 @@ namespace Blog.DAL
 
         public async Task<bool> DeletePost(string id)
         {
-            //initlaize connection
-            var client = new MongoClient();
-            //get db you are working with
-            var db = client.GetDatabase("DndBlog");
-            var posts = db.GetCollection<Post>("Posts");
             try
             {
-                await posts.DeleteOneAsync(post => post.Id == id);
+                await Posts.DeleteOneAsync(post => post.Id == id);
             }
             catch (Exception e)
             {

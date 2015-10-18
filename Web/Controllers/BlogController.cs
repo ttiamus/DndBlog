@@ -8,10 +8,24 @@ namespace Blog.Web.Controllers
 {
     public class BlogController : Controller
     {
-        // GET: Blog
         public ActionResult Index()
         {
             return View();
         }
+
+        /* ActionResult Posts()
+        {
+            return View();
+        }
+
+        public ActionResult About()
+        {
+            return View();
+        }
+
+        public ActionResult Quartermaster()
+        {
+            return View();
+        }*/
     }
 }

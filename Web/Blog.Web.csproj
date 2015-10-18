@@ -187,6 +187,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\BlogController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -200,7 +201,10 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="AngularController\BlogController.js" />
+    <Content Include="AngularController\Blog\AboutController.js" />
+    <Content Include="AngularController\Blog\IndexController.js" />
+    <Content Include="AngularController\Blog\PostController.js" />
+    <Content Include="AngularController\Blog\Quartermaster.js" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="favicon.ico" />
@@ -256,6 +260,11 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Blog\About.html" />
+    <Content Include="Views\Blog\Quartermaster.html" />
+    <Content Include="Views\Blog\Posts.html" />
+    <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\Blog\PostCreateNew.html" />
     <Content Include="Views\Blog\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>

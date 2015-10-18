@@ -11,7 +11,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blog.Models", "Models\Blog.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blog.DAL", "DAL\Blog.DAL.csproj", "{F3BC2ADA-F129-4094-80F1-5E4614F5910A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "DAL.Tests\Tests.csproj", "{478D2061-1001-4470-93EF-A6CF1C49F990}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{478D2061-1001-4470-93EF-A6CF1C49F990}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

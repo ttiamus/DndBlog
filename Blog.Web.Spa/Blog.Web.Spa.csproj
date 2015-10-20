@@ -66,6 +66,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App\Controllers\Test.js" />
     <Content Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -75,13 +76,14 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App\App.js" />
+    <Content Include="App\Routes.js" />
     <Content Include="Index.html" />
     <Content Include="Scripts\angular.min.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Styles\bootstrap.min.css" />
     <Content Include="Templates\add_order.html" />
     <Content Include="Templates\show_orders.html" />
+    <Content Include="Templates\testPage.html" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>

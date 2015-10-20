@@ -1,6 +1,7 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
+    <base href="/">
     <title>AngularJS Routing example</title>
     <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
     <style>
@@ -11,19 +12,19 @@
     </style>
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
-      <script src="../../assets/js/html5shiv.js"></script>
-      <script src="../../assets/js/respond.min.js"></script>
+        <script src="../../assets/js/html5shiv.js"></script>
+        <script src="../../assets/js/respond.min.js"></script>
     <![endif]-->
 
-    
+
 </head>
-<body ng-app="sampleApp">
+<body ng-app="dndBlog">
     <div class="container">
         <div class="row">
             <div class="col-md-3">
                 <ul class="nav">
-                    <li><a href="#AddNewOrder"> Add New Order </a></li>
-                    <li><a href="#ShowOrders"> Show Order </a></li>
+                    <li><a href="AddNewOrder"> Add New Order </a></li>
+                    <li><a href="ShowOrders"> Show Order </a></li>
                 </ul>
             </div>
             <div class="col-md-9">
@@ -32,6 +33,7 @@
         </div>
     </div><!-- /.container -->
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
-    <script src="/App/App.js"></script>
+    <script src="/App/Routes.js"></script>
+    <script src="/App/Controllers/Test.js"></script>
 </body>
 </html>

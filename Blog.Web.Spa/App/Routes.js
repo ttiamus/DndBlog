@@ -11,39 +11,24 @@ blogApp.config(["$routeProvider", "$locationProvider", function($routeProvider, 
     $locationProvider.html5Mode(true);
 
     $routeProvider.
-    when("/AddNewOrder", {
-        templateUrl: "/Templates/add_order.html",
-        controller: "AddOrderController"
+    when("/Posts", {
+        templateUrl: "/Templates/Posts.html",
+        controller: "PostCtrl",
+        controllerAs: "post"
     }).
-    when("/ShowOrders", {
-        templateUrl: "/Templates/show_orders.html",
-        controller: "ShowOrdersController"
-    }).
-    when("/test", {
+    when("/Test", {
         templateUrl: "/Templates/testPage.html",
-        controller: "TestController"
+        controller: "TestCtrl",
+        controllerAs: "test"
     }).
     when("/", {
-        templateUrl: "/Templates/testPage.html",
-        controller: "TestController"
+        templateUrl: "/Templates/Posts.html",
+        controller: "PostCtrl",
+        controllerAs: "post"
     }).
     otherwise({
-        redirectTo: "/test"
+        redirectTo: "/Posts"
     });
 
     
 }]);
-
-
-blogApp.controller("AddOrderController", function ($scope) {
-
-    $scope.message = "This is Add new order screen";
-
-});
-
-
-blogApp.controller("ShowOrdersController", function ($scope) {
-
-    $scope.message = "This is Show orders screen";
-
-});

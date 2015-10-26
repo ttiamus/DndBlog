@@ -66,9 +66,11 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App\controllers\NavCtrl.js" />
     <Content Include="App\controllers\PostCtrl.js" />
     <Content Include="App\controllers\TestCtrl.js" />
     <Content Include="App\servies\CommonService.js" />
+    <Content Include="App\testRoute.js" />
     <Content Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -80,8 +82,11 @@
   <ItemGroup>
     <Content Include="App\Routes.js" />
     <Content Include="Index.html" />
+    <Content Include="Scripts\angular-route.min.js" />
     <Content Include="Scripts\angular.min.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\jquery.min.js" />
+    <Content Include="Styles\app.css" />
     <Content Include="Styles\bootstrap.min.css" />
     <Content Include="Templates\Posts.html" />
     <Content Include="Templates\testPage.html" />

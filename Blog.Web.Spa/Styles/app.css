@@ -1,0 +1,24 @@
+﻿body {
+    padding-top: 10px;
+    background-color: #F5F5F5;
+}
+
+hr {
+    height: 2px;
+    background-color:#555;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.navbarContainer {
+    padding: 0;
+}
+
+
+#navbar {
+    padding: 0;
+}
+
+#showAllPostBtnWrapper {
+    margin-top: 10px;
+}

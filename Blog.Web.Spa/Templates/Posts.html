@@ -1,2 +1,27 @@
-﻿<h2>Post page</h2>
-{{ post.message }}
+﻿<div class="col-md-4" id="postArchiveLinks">
+
+</div>
+
+<div class="col-md-4" id="recentPosts">
+    <div ng-repeat="post in postCtrl.recentPosts track by post.id">
+        <p> Posted: {{post.date}}</p>
+        <p> Last Edited: {{post.lastEdited}}</p>
+        <p> Author: {{post.author}}</p>
+        <p>{{post.body}}</p>
+        <hr /> <!--horizaontal divider-->
+    </div>
+
+    <div>
+        <a class="btn btn-default pull-Left" id="previousPostsBtn" href="GetPreviousPosts" role="button">Previous 5</a>
+        <a class="btn btn-default pull-right" id="netPostsBtn" href="GetNextPosts" role="button">Next 5</a>
+    </div>
+
+    <div id="showAllPostBtnWrapper">
+        <a class="btn btn-default center-block" id="showAllBtn" href="showAllPostsBtn" role="button">Older Posts</a>
+    </div>
+
+</div>
+
+<div class="col-md-4">
+    <a class="btn btn-default pull-right" id="createPostBtn" href="CreatePost" role="button">Create Post</a>
+</div>

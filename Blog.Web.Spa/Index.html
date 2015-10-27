@@ -3,62 +3,55 @@
 <head>
     <link href="Styles/bootstrap.min.css" rel="stylesheet"/>
     <link href="Styles/app.css" rel="stylesheet" />
+
+    <base href="/">
+    <title>Dnd Blog</title>
+</head>
+<body>
+    <div class="container-fluid">
+        <nav class="navbar navbar-default blogHeader" ng-controller="NavCtrl as nav">
+            <div class="container-fluid navbarContainer">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <!--This makes the data target div collapse into a button when screen is small enough-->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="navbar">
+                    <ul class="nav navbar-nav">
+                        <li ng-class="{active: nav.isActiveTab('/Posts')}">
+                            <a href="Posts">
+                                Blog Posts
+                                <span class="sr-only">(current)</span>
+                            </a>
+                        </li>
+                        <li ng-class="{active: nav.isActiveTab('/Test')}"><a href="Test">Test Page</a></li>
+                        <li ng-class="{active: nav.isActiveTab('/Quartermaster')}"><a href="Quartermaster">Quartermaster</a></li>
+                    </ul>
+                </div><!-- /.navbar-collapse -->
+            </div><!-- /.container-fluid -->
+        </nav>
+
+        <div class="row">
+            <div ng-view></div>
+        </div>
+    </div>
+
     <script src="Scripts/jquery.min.js"></script>
     <script src="/Scripts/angular.min.js"></script>
     <script src="/Scripts/angular-route.min.js"></script>
     <script src="/Scripts/bootstrap.min.js"></script>
 
-    <base href="/">
-    <title>Dnd Blog</title>
-
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-        <script src="../../assets/js/html5shiv.js"></script>
-        <script src="../../assets/js/respond.min.js"></script>
-    <![endif]-->
-
-</head>
-<body>
-<div class="container-fluid">
-    <nav class="navbar navbar-default blogHeader" ng-controller="NavCtrl as nav">
-        <div class="container-fluid navbarContainer">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <!--This makes the data target div collapse into a button when screen is small enough-->
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-            </div>
-
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="navbar">
-                <ul class="nav navbar-nav">
-                    <li ng-class="{active: nav.isActiveTab('/Posts')}">
-                        <a href="Posts">
-                            Blog Posts
-                            <span class="sr-only">(current)</span>
-                        </a>
-                    </li>
-                    <li ng-class="{active: nav.isActiveTab('/Test')}"><a href="Test">Test Page</a></li>
-                    <li ng-class="{active: nav.isActiveTab('/Quartermaster')}"><a href="Quartermaster">Quartermaster</a></li>
-                </ul>
-
-            </div><!-- /.navbar-collapse -->
-        </div><!-- /.container-fluid -->
-
-    </nav>
-
-
-    <div class="row">
-            <div ng-view></div>
-    </div>
-</div>
-<script src="/App/Routes.js"></script>
+    <script src="/App/Routes.js"></script>
     <script src="App/controllers/NavCtrl.js"></script>
     <script src="App/controllers/PostCtrl.js"></script>
+    <script src="App/controllers/NewPostCtrl.js"></script>
     <script src="App/controllers/TestCtrl.js"></script>
 </body>
 </html>

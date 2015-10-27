@@ -1,0 +1,29 @@
+﻿<div class="col-md-4">
+
+</div>
+
+<div class="col-md-4" id="newPostFormWrapper">
+    <form class="form-horizontal" id="newPostForm">
+        <div class="form-group" ng-class="{'has-error': !newPostCtrl.isValidTitle()}">
+            <label class="col-md-2">Title</label>        <!--Look into Label for-->
+            <div class="col-md-10" >
+                <input type="text" class="form-control" placeholder="Title">
+            </div>
+        </div>
+
+        <div class="form-group" ng-class="{'has-error': !newPostCtrl.isValidBody()}">
+            <label class="col-md-2">Post</label> <!--Look into Label for-->
+            <div class="col-md-10">
+                <textarea class="form-control" rows="8"></textarea>
+            </div>
+        </div>
+
+        <div class="pull-right">
+            <input class="btn btn-default pull-right" ng-class="{disabled: !newPostCtrl.isValidPost()}" type="button" value="Submit">
+        </div>
+    </form>
+</div>
+
+<div class="col-md-4">
+    
+</div>

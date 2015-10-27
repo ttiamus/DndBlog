@@ -16,22 +16,25 @@ blogApp.config(["$routeProvider", "$locationProvider",
         $locationProvider.html5Mode(true);
 
         $routeProvider.
-        when("/Posts", {
-            templateUrl: "/Templates/Posts.html",
+        when("/", {
+            templateUrl: "/Templates/Post/Posts.html",
             controller: "PostCtrl",
-            controllerAs: "postCtrl",
+            controllerAs: "postCtrl"
+        }).
+        when("/Posts", {
+            redirectTo: "/"
+        }).
+        when("/CreatePost", {
+            templateUrl: "/Templates/Post/CreateNewPost.html",
+            controller: "NewPostCtrl",
+            controllerAs: "newPostCtrl"
         }).
         when("/Test", {
             templateUrl: "/Templates/testPage.html",
             controller: "TestCtrl",
-            controllerAs: "testCtrl",
-        }).
-        when("/", {
-            templateUrl: "/Templates/Posts.html",
-            controller: "PostCtrl",
-            controllerAs: "postCtrl",
+            controllerAs: "testCtrl"
         }).
         otherwise({
-            redirectTo: "/Posts"
+            redirectTo: "/"
         });
     }]);

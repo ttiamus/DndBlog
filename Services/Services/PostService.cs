@@ -24,6 +24,7 @@ namespace Blog.Services.Services
         {
             //TODO: Make an Equals overload method for Post that will check everything but the Id to see if an identical post has been made already. Check for that before insertion
             post.Id = ObjectId.GenerateNewId().ToString();
+            post.Author = "Ttiamus";            //TODO: Make this pull the current signed in user
             post.Created = DateTime.Now;
 
             return await postRepo.CreatePost(post);

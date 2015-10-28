@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blog.Web", "Web\Blog.Web.csproj", "{3C25FC83-C1FB-4738-A3C3-1FD1096AEF1F}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blog.Services", "Services\Blog.Services.csproj", "{2491ACFB-C839-413A-BF8C-7A443057D2F8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blog.Models", "Models\Blog.Models.csproj", "{E12CF9CF-9703-47E1-BE56-7C782A796594}"
@@ -21,10 +19,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{3C25FC83-C1FB-4738-A3C3-1FD1096AEF1F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3C25FC83-C1FB-4738-A3C3-1FD1096AEF1F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3C25FC83-C1FB-4738-A3C3-1FD1096AEF1F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3C25FC83-C1FB-4738-A3C3-1FD1096AEF1F}.Release|Any CPU.Build.0 = Release|Any CPU
 		{2491ACFB-C839-413A-BF8C-7A443057D2F8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{2491ACFB-C839-413A-BF8C-7A443057D2F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2491ACFB-C839-413A-BF8C-7A443057D2F8}.Release|Any CPU.ActiveCfg = Release|Any CPU

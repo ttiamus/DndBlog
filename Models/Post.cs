@@ -32,6 +32,7 @@ namespace Models
             this.Title = title;
             this.Body = body;
             this.Created = DateTime.Now;
+            this.Id = ObjectId.GenerateNewId().ToString();
         }
     }
 }

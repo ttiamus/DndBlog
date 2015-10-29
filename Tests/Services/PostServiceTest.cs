@@ -45,7 +45,7 @@ namespace DAL.Tests.Services
 
             var post = postService.GetEntry(postToInsert.Id).Result;
 
-            Assert.IsTrue(String.Equals(post.Id, postToInsert.Id));
+            Assert.IsTrue(string.Equals(post.Id, postToInsert.Id));
         }
 
         [TestMethod]

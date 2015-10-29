@@ -13,6 +13,7 @@ using Blog.Services.Services;
 namespace Blog.Services.Controllers
 {
     //TODO: Consider moving creation of status message into service. This will allow to change the message based on what happens
+    //TODO: Look into JSONP format POSt to get around cross domain issues
     //Status code descriptions http://www.restapitutorial.com/lessons/httpmethods.html
 
     public class PostController : ApiController

@@ -2,8 +2,8 @@
 using System.Linq;
 using System.Runtime.Serialization;
 using Blog.DAL;
+using Blog.Models;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Models;
 using MongoDB.Bson;
 
 namespace Tests.DAL
@@ -14,9 +14,9 @@ namespace Tests.DAL
         [TestMethod]
         public void CanSavePost()
         {
-            var post = new Post("UnitTestPost", "test title", "Ttiamus");
-            var postRepo = new PostRepo();
-            var insertTask = postRepo.CreatePost(post);
+            var post = new JournalEntry("UnitTestPost", "test title", "Ttiamus");
+            var postRepo = new JournalRepo();
+            var insertTask = postRepo.CreateEntry(post);
             insertTask.Wait();
 
             Assert.IsTrue(insertTask.IsCompleted);
@@ -25,10 +25,10 @@ namespace Tests.DAL
         [TestMethod]
         public void CanGetAllPosts()
         {
-            var postRepo = new PostRepo();
+            var postRepo = new JournalRepo();
 
-            var postToInsert = new Post("CanGetAllPosts", "test title", "Ttiamus");
-            postRepo.CreatePost(postToInsert).Wait();
+            var postToInsert = new JournalEntry("CanGetAllPosts", "test title", "Ttiamus");
+            postRepo.CreateEntry(postToInsert).Wait();
 
             var getAllPostTask = postRepo.GetPosts();
             var posts = getAllPostTask.Result.ToList();
@@ -38,13 +38,13 @@ namespace Tests.DAL
         [TestMethod]
         public void CanGetPost()
         {
-            var postRepo = new PostRepo();
+            var postRepo = new JournalRepo();
 
-            var postToInsert = new Post("UnitTestPost", "test title", "Ttiamus");
+            var postToInsert = new JournalEntry("UnitTestPost", "test title", "Ttiamus");
             
-            postRepo.CreatePost(postToInsert).Wait();
+            postRepo.CreateEntry(postToInsert).Wait();
 
-            var post = postRepo.GetPost(postToInsert.Id).Result;
+            var post = postRepo.GetEntry(postToInsert.Id).Result;
 
             var id1 = postToInsert.Id.ToString();
             var id2 = post.Id.ToString();
@@ -55,29 +55,29 @@ namespace Tests.DAL
         [TestMethod]
         public void CanUpdatePost()
         {
-            var postRepo = new PostRepo();
+            var postRepo = new JournalRepo();
 
-            var postToUpdate = new Post("Post To Update", "test title", "Ttiamus");
-            postRepo.CreatePost(postToUpdate).Wait();
+            var postToUpdate = new JournalEntry("Post To Update", "test title", "Ttiamus");
+            postRepo.CreateEntry(postToUpdate).Wait();
 
-            var post = new Post("CanUpdatePostTest", "test title", "Ttiamus") {Id = postToUpdate.Id};
+            var post = new JournalEntry("CanUpdatePostTest", "test title", "Ttiamus") {Id = postToUpdate.Id};
 
 
-            var updatePostTask = postRepo.UpdatePost(post);
+            var updatePostTask = postRepo.UpdateEntry(post);
             updatePostTask.Wait();
-            Assert.AreEqual("CanUpdatePostTest", postRepo.GetPost(postToUpdate.Id).Result.Body);
+            Assert.AreEqual("CanUpdatePostTest", postRepo.GetEntry(postToUpdate.Id).Result.Body);
         }
 
         [TestMethod]
         public void CanDeletePost()
         {
-            var postRepo = new PostRepo();
-            var post = new Post("CanDeletePost test", "test title", "Ttiamus");
-            postRepo.CreatePost(post).Wait();
+            var postRepo = new JournalRepo();
+            var post = new JournalEntry("CanDeletePost test", "test title", "Ttiamus");
+            postRepo.CreateEntry(post).Wait();
 
-            var deletePostTask = postRepo.DeletePost(post.Id);
+            var deletePostTask = postRepo.DeleteEntry(post.Id);
             deletePostTask.Wait();
-            Assert.IsNull(postRepo.GetPost(post.Id).Result);
+            Assert.IsNull(postRepo.GetEntry(post.Id).Result);
         }
     }
 

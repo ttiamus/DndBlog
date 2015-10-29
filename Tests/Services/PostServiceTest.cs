@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Linq;
 using Blog.DAL;
+using Blog.Models;
 using Blog.Services.Services;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Models;
 
 namespace DAL.Tests.Services
 {
@@ -13,7 +13,7 @@ namespace DAL.Tests.Services
         [TestMethod]
         public void CanSavePost()
         {
-            var post = new Post("UnitTestPost", "test title", "Ttiamus");
+            var post = new JournalEntry("UnitTestEntry", "test title", "Ttiamus");
             PostService postService = new PostService();
 
             var insertTask = postService.CreatePost(post);
@@ -26,10 +26,10 @@ namespace DAL.Tests.Services
         {
             PostService postService = new PostService();
 
-            var postToInsert = new Post("CanGetAllPosts", "test title", "Ttiamus");
+            var postToInsert = new JournalEntry("CanGetAllEntries", "test title", "Ttiamus");
             postService.CreatePost(postToInsert).Wait();
 
-            var getAllPostTask = postService.GetPosts();
+            var getAllPostTask = postService.GetEntries();
             var posts = getAllPostTask.Result.ToList();
             Assert.IsTrue(posts.Count > 0);
         }
@@ -39,16 +39,13 @@ namespace DAL.Tests.Services
         {
             PostService postService = new PostService();
 
-            var postToInsert = new Post("UnitTestPost", "test title", "Ttiamus");
+            var postToInsert = new JournalEntry("UnitTestEntry", "test title", "Ttiamus");
 
             postService.CreatePost(postToInsert).Wait();
 
-            var post = postService.GetPost(postToInsert.Id).Result;
+            var post = postService.GetEntry(postToInsert.Id).Result;
 
-            var id1 = postToInsert.Id.ToString();
-            var id2 = post.Id.ToString();
-            var test = String.Equals(id1, id2);
-            Assert.IsTrue(String.Equals(post.Id.ToString(), postToInsert.Id.ToString()));
+            Assert.IsTrue(String.Equals(post.Id, postToInsert.Id));
         }
 
         [TestMethod]
@@ -56,27 +53,27 @@ namespace DAL.Tests.Services
         {
             PostService postService = new PostService(); ;
 
-            var postToUpdate = new Post("Post To Update", "test title", "Ttiamus");
+            var postToUpdate = new JournalEntry("Entry To Update", "test title", "Ttiamus");
             postService.CreatePost(postToUpdate).Wait();
 
-            var post = new Post("CanUpdatePostTest", "test title", "Ttiamus") {Id = postToUpdate.Id };
+            var post = new JournalEntry("CanUpdateEntryTest", "test title", "Ttiamus") {Id = postToUpdate.Id };
 
 
-            var updatePostTask = postService.UpdatePost(post);
+            var updatePostTask = postService.UpdateEntry(post);
             updatePostTask.Wait();
-            Assert.AreEqual("CanUpdatePostTest", postService.GetPost(postToUpdate.Id).Result.Body);
+            Assert.AreEqual("CanUpdateEntryTest", postService.GetEntry(postToUpdate.Id).Result.Body);
         }
 
         [TestMethod]
         public void CanDeletePost()
         {
             PostService postService = new PostService();
-            var post = new Post("CanDeletePost test", "test title", "Ttiamus");
+            var post = new JournalEntry("CanDeleteEntry test", "test title", "Ttiamus");
             postService.CreatePost(post).Wait();
 
-            var deletePostTask = postService.DeletePost(post.Id);
+            var deletePostTask = postService.DeleteEntry(post.Id);
             deletePostTask.Wait();
-            Assert.IsNull(postService.GetPost(post.Id).Result);
+            Assert.IsNull(postService.GetEntry(post.Id).Result);
         }
     }
 }

@@ -3,11 +3,11 @@
 </div>
 
 <div class="col-md-4" id="recentPosts">
-    <div ng-repeat="post in postCtrl.recentPosts track by post.id">
-        <p> Posted: {{post.date}}</p>
-        <p> Last Edited: {{post.lastEdited}}</p>
-        <p> Author: {{post.author}}</p>
-        <p>{{post.body}}</p>
+    <div ng-repeat="entry in journalCtrl.recentEntries track by entry.id">
+        <p> Posted: {{entry.date}}</p>
+        <p> Last Edited: {{entry.lastEdited}}</p>
+        <p> Author: {{entry.character}}</p>
+        <p>{{entry.body}}</p>
         <hr /> <!--horizaontal divider-->
     </div>
 
@@ -23,5 +23,5 @@
 </div>
 
 <div class="col-md-4">
-    <a class="btn btn-default pull-right" id="createPostBtn" href="CreatePost" role="button">Create Post</a>
+    <a class="btn btn-default pull-right" id="createPostBtn" href="/Journal/NewEntry" role="button">Create Post</a>
 </div>

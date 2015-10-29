@@ -1,8 +1,8 @@
 ﻿<!DOCTYPE html>
 <html lang="en" ng-app="dndBlog">
 <head>
-    <link href="Styles/bootstrap.min.css" rel="stylesheet"/>
-    <link href="Styles/app.css" rel="stylesheet" />
+    <link href="/Styles/bootstrap.min.css" type="text/css" rel="stylesheet"/>
+    <link href="/Styles/app.css" type="text/css" rel="stylesheet" />
 
     <base href="/">
     <title>Dnd Blog</title>
@@ -25,14 +25,14 @@
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="navbar">
                     <ul class="nav navbar-nav">
-                        <li ng-class="{active: nav.isActiveTab('/Posts')}">
-                            <a href="Posts">
-                                Blog Posts
+                        <li ng-class="{active: nav.isActiveTab('/')}">
+                            <a href="/About">
+                                About
                                 <span class="sr-only">(current)</span>
                             </a>
                         </li>
-                        <li ng-class="{active: nav.isActiveTab('/Test')}"><a href="Test">Test Page</a></li>
-                        <li ng-class="{active: nav.isActiveTab('/Quartermaster')}"><a href="Quartermaster">Quartermaster</a></li>
+                        <li ng-class="{active: nav.isActiveTab('/Journal/Entries')}"><a href="/Journal/Entries">Blog Posts</a></li>
+                        <li ng-class="{active: nav.isActiveTab('/Items/Quartermaster')}"><a href="/Items/Quartermaster">Quartermaster</a></li>
                     </ul>
                 </div><!-- /.navbar-collapse -->
             </div><!-- /.container-fluid -->
@@ -51,9 +51,10 @@
     <script src="/App/Routes.js"></script>
 
     <script src="App/controllers/NavCtrl.js"></script>
-    <script src="App/controllers/PostCtrl.js"></script>
-    <script src="App/controllers/NewPostCtrl.js"></script>
-    <script src="App/controllers/TestCtrl.js"></script>
+    <script src="App/controllers/Journal/JournalCtrl.js"></script>
+    <script src="App/controllers/Journal/NewEntryCtrl.js"></script>
+    <script src="App/controllers/Character/AboutCtrl.js"></script>
+    <script src="App/controllers/Items/QuartermasterCtrl.js"></script>
 
     <script src="/App/directives/ShowErrors.js"></script>
 </body>

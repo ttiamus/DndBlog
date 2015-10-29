@@ -4,40 +4,40 @@ using System.Configuration;
 using System.Runtime.Serialization;
 using System.Threading.Tasks;
 using System.Web.Script.Serialization;
-using Models;
+using Blog.Models;
 using MongoDB.Bson;
 using MongoDB.Driver;
 using MongoDB.Driver.Core.Configuration;
 
 namespace Blog.DAL
 {
-    public class PostRepo
+    public class JournalRepo
     {
         public MongoClient Client { get; set; }
         public IMongoDatabase Db { get; set; }
-        public IMongoCollection<Post> Posts { get; set; }
+        public IMongoCollection<JournalEntry> Entries { get; set; }
 
         private readonly string connectionString = ConfigurationManager.ConnectionStrings["MongoConnectionString"].ConnectionString;
-        private readonly string blogDatabase = ConfigurationManager.AppSettings["BlogDatabase"];
-        private readonly string postCollection = ConfigurationManager.AppSettings["PostCollection"];
+        private readonly string journalDatabase = ConfigurationManager.AppSettings["JournalDatabase"];
+        private readonly string entryCollection = ConfigurationManager.AppSettings["EntryCollection"];
 
-        public PostRepo()
+        public JournalRepo()
         {
             //initlaize connection
             Client = new MongoClient(connectionString);
             //get db you are working with
-            Db = Client.GetDatabase(blogDatabase);
+            Db = Client.GetDatabase(journalDatabase);
             //get or create table
-            Posts = Db.GetCollection<Post>(postCollection);
+            Entries = Db.GetCollection<JournalEntry>(entryCollection);
         }
 
 
         //Id of the post is added to the object after insertion
-        public async Task<bool> CreatePost(Post post)
+        public async Task<bool> CreateEntry(JournalEntry journalEntry)
         {
             try
             {
-                await Posts.InsertOneAsync(post);
+                await Entries.InsertOneAsync(journalEntry);
             }
             catch (Exception e)
             {
@@ -48,34 +48,34 @@ namespace Blog.DAL
             return true; //Success
         }
 
-        public async Task<Post> GetPost(string id)
+        public async Task<JournalEntry> GetEntry(string id)
         {
-            return await Posts.Find(blogPost => blogPost.Id == id).FirstOrDefaultAsync();
+            return await Entries.Find(blogPost => blogPost.Id == id).FirstOrDefaultAsync();
         }
 
-        public async Task<IEnumerable<Post>> GetPosts()
+        public async Task<IEnumerable<JournalEntry>> GetPosts()
         {
-            return await Posts.Find(post => true).ToListAsync();
+            return await Entries.Find(post => true).ToListAsync();
         }
 
-        public async Task<bool> UpdatePost(Post post)
+        public async Task<bool> UpdateEntry(JournalEntry journalEntry)
         {
-            var postToBeUpdated = await GetPost(post.Id);
+            var entryToBeUpdated = await GetEntry(journalEntry.Id);
 
-            if (postToBeUpdated == null)
+            if (entryToBeUpdated == null)
             {
                 return false;   //Can't find post so bail out
             }
 
-            postToBeUpdated.Author = post.Author;
-            postToBeUpdated.Title = post.Title;
-            postToBeUpdated.Body = post.Body;
-            postToBeUpdated.LastEdited = DateTime.Now;
+            entryToBeUpdated.Character = journalEntry.Character;
+            entryToBeUpdated.Title = journalEntry.Title;
+            entryToBeUpdated.Body = journalEntry.Body;
+            entryToBeUpdated.LastEdited = DateTime.Now;
             
 
             try
             {
-                await Posts.ReplaceOneAsync(x => x.Id == post.Id, postToBeUpdated);
+                await Entries.ReplaceOneAsync(x => x.Id == journalEntry.Id, entryToBeUpdated);
             }
             catch (Exception e)
             {
@@ -85,11 +85,11 @@ namespace Blog.DAL
             return true;
         }
 
-        public async Task<bool> DeletePost(string id)
+        public async Task<bool> DeleteEntry(string id)
         {
             try
             {
-                await Posts.DeleteOneAsync(post => post.Id == id);
+                await Entries.DeleteOneAsync(post => post.Id == id);
             }
             catch (Exception e)
             {

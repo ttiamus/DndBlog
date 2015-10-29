@@ -66,10 +66,11 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App\controllers\Character\AboutCtrl.js" />
     <Content Include="App\controllers\NavCtrl.js" />
-    <Content Include="App\controllers\NewPostCtrl.js" />
-    <Content Include="App\controllers\PostCtrl.js" />
-    <Content Include="App\controllers\TestCtrl.js" />
+    <Content Include="App\controllers\Journal\NewEntryCtrl.js" />
+    <Content Include="App\controllers\Journal\JournalCtrl.js" />
+    <Content Include="App\controllers\Items\QuartermasterCtrl.js" />
     <Content Include="App\directives\ShowErrors.js" />
     <Content Include="App\servies\CommonService.js" />
     <Content Include="App\testRoute.js" />
@@ -95,9 +96,10 @@
     <None Include="Scripts\_references.js" />
     <Content Include="Styles\app.css" />
     <Content Include="Styles\bootstrap.min.css" />
-    <Content Include="Templates\Post\CreateNewPost.html" />
-    <Content Include="Templates\Post\Posts.html" />
-    <Content Include="Templates\testPage.html" />
+    <Content Include="Templates\About\About.html" />
+    <Content Include="Templates\Items\Quartermaster.html" />
+    <Content Include="Templates\Journal\NewEntry.html" />
+    <Content Include="Templates\Journal\Journal.html" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>

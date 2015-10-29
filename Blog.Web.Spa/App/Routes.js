@@ -17,22 +17,24 @@ blogApp.config(["$routeProvider", "$locationProvider",
 
         $routeProvider.
         when("/", {
-            templateUrl: "/Templates/Post/Posts.html",
-            controller: "PostCtrl",
-            controllerAs: "postCtrl"
+            templateUrl: "/Templates/About/About.html",
+            controller: "AboutCtrl",
+            controllerAs: "aboutCtrl"
         }).
-        when("/Posts", {
-            redirectTo: "/"
+        when("/Journal/Entries", {
+            templateUrl: "/Templates/Journal/Journal.html",
+            controller: "JournalCtrl",
+            controllerAs: "journalCtrl"
         }).
-        when("/CreatePost", {
-            templateUrl: "/Templates/Post/CreateNewPost.html",
-            controller: "NewPostCtrl",
-            controllerAs: "newPostCtrl"
+        when("/Journal/NewEntry", {
+            templateUrl: "/Templates/Journal/NewEntry.html",
+            controller: "NewEntryCtrl",
+            controllerAs: "newEntryCtrl"
         }).
-        when("/Test", {
-            templateUrl: "/Templates/testPage.html",
-            controller: "TestCtrl",
-            controllerAs: "testCtrl"
+        when("/Items/Quartermaster", {
+            templateUrl: "/Templates/Items/Quartermaster.html",
+            controller: "QuartermasterCtrl",
+            controllerAs: "quartermasterCtrl"
         }).
         otherwise({
             redirectTo: "/"

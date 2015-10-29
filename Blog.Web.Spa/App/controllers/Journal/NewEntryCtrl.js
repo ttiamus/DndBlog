@@ -1,27 +1,27 @@
-﻿function NewPostCtrl($scope, $http) {
+﻿function NewEntryCtrl($scope, $http) {
     var vm = this;
 
-    vm.newPost =
+    vm.newEntry =
     {
         "title": "",
         "body": ""
     };
 
-    vm.createNewPost = function() {
+    vm.createNewEntry = function() {
         $scope.$broadcast("show-errors-check-validity");        //Broadcast is a method off scope, so we had to inject it here
-        if ($scope.newPostForm.$invalid) { return; }
+        if ($scope.newEntryForm.$invalid) { return; }
 
         //Investigate setting up CORS for cross domain api call if want to run api on seperate website
         $http({
             method: "POST",
             url: "api/post",
-            data: vm.newPost
+            data: vm.newEntry
         }).then(function success(response) {
-            console.log("post was created");
+            console.log("entry was created");
         }, function failure(resonse) {
-            console.log("Post creation failed");
+            console.log("entry creation failed");
         });
     }
 }
 
-blogApp.controller("NewPostCtrl", NewPostCtrl);
+blogApp.controller("NewEntryCtrl", NewEntryCtrl);

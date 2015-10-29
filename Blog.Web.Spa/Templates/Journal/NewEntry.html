@@ -2,12 +2,12 @@
 
 </div>
 
-<div class="col-md-4" id="newPostFormWrapper">
-    <form class="form-horizontal" id="newPostForm" name="newPostForm" novalidate>
+<div class="col-md-4" id="newEntryFormWrapper">
+    <form class="form-horizontal" id="newEntryForm" name="newEntryForm" novalidate>
         <div class="form-group" show-errors>
             <label class="col-md-2">Title</label>        <!--Look into Label for-->
             <div class="col-md-10" >
-                <input type="text" class="form-control" placeholder="Title" name="title" ng-model="newPostCtrl.newPost.title" required>
+                <input type="text" class="form-control" placeholder="Title" name="title" ng-model="newEntryCtrl.newEntry.title" required>
             </div>
         </div>
 
@@ -15,12 +15,12 @@
         <div class="form-group" show-errors>
             <label class="col-md-2">Post</label> <!--Look into Label for-->
             <div class="col-md-10">
-                <textarea class="form-control" rows="8" name="body" ng-model="newPostCtrl.newPost.body" required></textarea>
+                <textarea class="form-control" rows="8" name="body" ng-model="newEntryCtrl.newEntry.body" required></textarea>
             </div>
         </div>
 
         <div class="pull-right">
-            <input class="btn btn-default pull-right" type="button" value="Submit" ng-click="newPostCtrl.createNewPost()">
+            <input class="btn btn-default pull-right" type="button" value="Submit" ng-click="newEntryCtrl.createNewEntry()">
         </div>
     </form>
 </div>

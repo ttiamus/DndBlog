@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Mvc;
 using Blog.DAL;
+using Blog.Models;
 using Blog.Services.Services;
-using Models;
 
 namespace Blog.Services.Controllers
 {
@@ -25,9 +25,9 @@ namespace Blog.Services.Controllers
         }
 
         [System.Web.Http.HttpPost]
-        public async Task<IHttpActionResult> CreatePost(Post post)
+        public async Task<IHttpActionResult> CreatePost(JournalEntry journalEntry)
         {
-            var success = await postService.CreatePost(post);
+            var success = await postService.CreatePost(journalEntry);
             if (!success)
             {
                 return Conflict();
@@ -37,9 +37,9 @@ namespace Blog.Services.Controllers
         }
 
         [System.Web.Http.HttpGet]
-        public async Task<IHttpActionResult> GetPost(string id)
+        public async Task<IHttpActionResult> GetEntry(string id)
         {
-            var post = await postService.GetPost(id);
+            var post = await postService.GetEntry(id);
 
             if (post == null)
             {
@@ -50,23 +50,23 @@ namespace Blog.Services.Controllers
         }
 
         [System.Web.Http.HttpGet]
-        public async Task<IHttpActionResult> GetPosts()
+        public async Task<IHttpActionResult> GetEntry()
         {
-            var posts = await postService.GetPosts();
+            var entries = await postService.GetEntries();
 
-            if (!posts.Any())
+            if (!entries.Any())
             {
                 return NotFound();
             }
 
-            return Ok(posts);
+            return Ok(entries);
         }
 
         
         [System.Web.Http.HttpPut]
-        public async Task<IHttpActionResult> UpdatePost(Post post)
+        public async Task<IHttpActionResult> UpdateEntry(JournalEntry journalEntry)
         {
-            var success = await postService.UpdatePost(post);
+            var success = await postService.UpdateEntry(journalEntry);
             if (!success)
             {
                 return NotFound();
@@ -77,9 +77,9 @@ namespace Blog.Services.Controllers
         }
 
         [System.Web.Http.HttpDelete]
-        public async Task<IHttpActionResult> DeletePost(string id)
+        public async Task<IHttpActionResult> DeleteEntry(string id)
         {
-            var success = await postService.DeletePost(id);
+            var success = await postService.DeleteEntry(id);
 
             if (!success)
             {

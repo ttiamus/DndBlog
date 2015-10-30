@@ -481,6 +481,11 @@
             </summary>
             <param name="documentPath">The physical path to XML document.</param>
         </member>
+        <member name="T:Blog.Services.Controllers.JournalController">
+            <summary>
+            Handles all calls that have to deal with journal entries
+            </summary>
+        </member>
         <member name="M:Blog.Services.Controllers.JournalController.CreateEntry(Blog.Models.JournalEntry)">
             <summary>
             Create a new journal entry
@@ -519,6 +524,48 @@
         <member name="M:Blog.Services.Controllers.JournalController.DeleteEntry(System.String)">
             <summary>
             Deletes an entry with the given id
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Blog.Services.Services.JournalService.CreateEntry(Blog.Models.JournalEntry)">
+            <summary>
+            Calls repo to save a new post after generating an Id and createDate
+            </summary>
+            <param name="journalEntry"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Blog.Services.Services.JournalService.GetEntry(System.String)">
+            <summary>
+            Calls the repo to get the entry with the given Id
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Blog.Services.Services.JournalService.GetEntries">
+            <summary>
+            Calls the repo to get all of the entries in the db
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Blog.Services.Services.JournalService.GetEntries(System.String,System.Int32)">
+            <summary>
+            Calls the repo to get the next 5 entries for a given character after the given index
+            </summary>
+            <param name="character"></param>
+            <param name="startingIndex"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Blog.Services.Services.JournalService.UpdateEntry(Blog.Models.JournalEntry)">
+            <summary>
+            Calls the repo to update the given entry with its new values
+            </summary>
+            <param name="journalEntry"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Blog.Services.Services.JournalService.DeleteEntry(System.String)">
+            <summary>
+            Calls the repo to Delete entry with the given Id
             </summary>
             <param name="id"></param>
             <returns></returns>

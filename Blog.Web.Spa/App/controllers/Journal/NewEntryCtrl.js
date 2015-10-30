@@ -4,13 +4,14 @@
     vm.newEntry =
     {
         "title": "",
-        "body": ""
+        "body": "",
+        "character": "Atyr"    //Default to Atyr for now. This will evenually come from a logged in value
     };
 
     vm.createNewEntry = function() {
         $scope.$broadcast("show-errors-check-validity");        //Broadcast is a method off scope, so we had to inject it here
         if ($scope.newEntryForm.$invalid) { return; }
-
+        console.log(vm.newEntry);
         //Investigate setting up CORS for cross domain api call if want to run api on seperate website
         $http({
             method: "POST",

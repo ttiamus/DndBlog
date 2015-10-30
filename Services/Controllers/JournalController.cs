@@ -16,6 +16,9 @@ namespace Blog.Services.Controllers
     //TODO: Look into JSONP format POSt to get around cross domain issues
     //Status code descriptions http://www.restapitutorial.com/lessons/httpmethods.html
 
+    /// <summary>
+    /// Handles all calls that have to deal with journal entries
+    /// </summary>
     public class JournalController : ApiController
     {
         private readonly JournalService journalService = new JournalService();

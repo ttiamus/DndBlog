@@ -1,13 +1,19 @@
-﻿<div class="col-md-4" id="postArchiveLinks">
-
+﻿<div class="col-md-4">
+    <!--TODO:consider making this use id instead. May be faster-->
+    <select ng-options="character.Name as character.Name for character in journalCtrl.charactersInCampaign" ng-model="journalCtrl.selectedCharacter" ng-change="journalCtrl.getNextFiveEntries()">
+        <option value="">
+            Choose a character to view
+        </option>
+    </select>
 </div>
 
 <div class="col-md-4" id="recentPosts">
     <div ng-repeat="entry in journalCtrl.recentEntries track by entry.Id">
-        <p> Posted: {{entry.Date}}</p>
-        <p> Last Edited: {{entry.LastEdited}}</p>
+        <p> Posted: {{entry.Created}}</p>
+        <p> Last Edited: {{entry.LastEdited}}</p>   <!--TODO: Only show this if it has been edited-->
         <p> Author: {{entry.Character}}</p>
         <p>{{entry.Body}}</p>
+        <!--TODO: Add a edit post button here-->
         <hr /> <!--horizaontal divider-->
     </div>
 

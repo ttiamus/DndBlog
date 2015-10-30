@@ -9,6 +9,7 @@ namespace Blog.Models
     public class JournalEntry
     {
         [BsonId]
+        [BsonRepresentation(BsonType.ObjectId)] //Makes it so it is saved to the db as an ObjectId, but is manipulated as a string
         public string Id { get; set; }
 
         public string Character { get; set; }
@@ -17,8 +18,10 @@ namespace Blog.Models
 
         public string Body { get; set; }
 
+        [BsonDateTimeOptions(Kind = DateTimeKind.Local)]
         public DateTime Created { get; set; }
 
+        [BsonDateTimeOptions(Kind = DateTimeKind.Local)]
         public DateTime? LastEdited { get; set; }
 
         public JournalEntry()

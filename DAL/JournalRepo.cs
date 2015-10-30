@@ -53,9 +53,14 @@ namespace Blog.DAL
             return await Entries.Find(blogPost => blogPost.Id == id).FirstOrDefaultAsync();
         }
 
-        public async Task<IEnumerable<JournalEntry>> GetPosts()
+        public async Task<IEnumerable<JournalEntry>> GetEntries()
         {
-            return await Entries.Find(post => true).ToListAsync();
+            return await Entries.Find(entry => true).ToListAsync();
+        }
+
+        public async Task<IEnumerable<JournalEntry>> GetEntries(string character, int startingIndex)
+        {
+            return await Entries.Find(entry => entry.Character == character).SortByDescending(entry => entry.Created).Skip(startingIndex).Limit(5).ToListAsync();
         }
 
         public async Task<bool> UpdateEntry(JournalEntry journalEntry)

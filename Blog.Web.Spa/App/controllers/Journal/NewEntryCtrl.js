@@ -14,7 +14,7 @@
         //Investigate setting up CORS for cross domain api call if want to run api on seperate website
         $http({
             method: "POST",
-            url: "api/post",
+            url: "api/journal",
             data: vm.newEntry
         }).then(function success(response) {
             console.log("entry was created");

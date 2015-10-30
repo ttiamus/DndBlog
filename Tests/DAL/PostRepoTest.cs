@@ -9,75 +9,92 @@ using MongoDB.Bson;
 namespace Tests.DAL
 {
     [TestClass]
-    public class PostRepoTest
+    public class JournalRepoTest
     {
         [TestMethod]
-        public void CanSavePost()
+        public void CanSaveEntry()
         {
-            var post = new JournalEntry("UnitTestPost", "test title", "Ttiamus");
-            var postRepo = new JournalRepo();
-            var insertTask = postRepo.CreateEntry(post);
+            var entry = new JournalEntry("UnitTestEntry", "test title", "Ttiamus");
+            var entryRepo = new JournalRepo();
+            var insertTask = entryRepo.CreateEntry(entry);
             insertTask.Wait();
 
             Assert.IsTrue(insertTask.IsCompleted);
         }
 
         [TestMethod]
-        public void CanGetAllPosts()
+        public void CanGetAllEntries()
         {
-            var postRepo = new JournalRepo();
+            var entryRepo = new JournalRepo();
 
-            var postToInsert = new JournalEntry("CanGetAllPosts", "test title", "Ttiamus");
-            postRepo.CreateEntry(postToInsert).Wait();
+            var entryToInsert = new JournalEntry("CanGetAllEntries", "test title", "Ttiamus");
+            entryRepo.CreateEntry(entryToInsert).Wait();
 
-            var getAllPostTask = postRepo.GetPosts();
-            var posts = getAllPostTask.Result.ToList();
-            Assert.IsTrue(posts.Count > 0);
+            var getAllEntriesTask = entryRepo.GetEntries();
+            var entries = getAllEntriesTask.Result.ToList();
+            Assert.IsTrue(entries.Count > 0);
         }
 
         [TestMethod]
-        public void CanGetPost()
+        public void CanGetTopEntries()
         {
-            var postRepo = new JournalRepo();
+            var entryRepo = new JournalRepo();
 
-            var postToInsert = new JournalEntry("UnitTestPost", "test title", "Ttiamus");
-            
-            postRepo.CreateEntry(postToInsert).Wait();
+            var entryToInsert = new JournalEntry("CanGetTopEntriesTest", "test title", "Ttiamus");
 
-            var post = postRepo.GetEntry(postToInsert.Id).Result;
+            for (var i = 0; i <= 5; i++)
+            {
+                entryRepo.CreateEntry(entryToInsert).Wait();
+            }
 
-            var id1 = postToInsert.Id.ToString();
-            var id2 = post.Id.ToString();
-            var test = String.Equals(id1, id2);
-            Assert.IsTrue(String.Equals(post.Id.ToString(), postToInsert.Id.ToString()));
+            var getTopEntriesTask = entryRepo.GetEntries("Ttiamus", 0);
+            var entries = getTopEntriesTask.Result.ToList();
+            Assert.IsTrue(entries.Count == 5);
         }
 
         [TestMethod]
-        public void CanUpdatePost()
+        public void CanGetEntry()
         {
-            var postRepo = new JournalRepo();
+            var entryRepo = new JournalRepo();
 
-            var postToUpdate = new JournalEntry("Post To Update", "test title", "Ttiamus");
-            postRepo.CreateEntry(postToUpdate).Wait();
+            var entryToInsert = new JournalEntry("UnitTestEntry", "test title", "Ttiamus");
 
-            var post = new JournalEntry("CanUpdatePostTest", "test title", "Ttiamus") {Id = postToUpdate.Id};
+            entryRepo.CreateEntry(entryToInsert).Wait();
 
+            var entry = entryRepo.GetEntry(entryToInsert.Id).Result;
 
-            var updatePostTask = postRepo.UpdateEntry(post);
-            updatePostTask.Wait();
-            Assert.AreEqual("CanUpdatePostTest", postRepo.GetEntry(postToUpdate.Id).Result.Body);
+            var id1 = entryToInsert.Id;
+            var id2 = entry.Id;
+            var test = string.Equals(id1, id2);
+            Assert.IsTrue(string.Equals(entry.Id, entryToInsert.Id));
         }
 
         [TestMethod]
-        public void CanDeletePost()
+        public void CanUpdateEntry()
         {
-            var postRepo = new JournalRepo();
-            var post = new JournalEntry("CanDeletePost test", "test title", "Ttiamus");
-            postRepo.CreateEntry(post).Wait();
+            var entryRepo = new JournalRepo();
 
-            var deletePostTask = postRepo.DeleteEntry(post.Id);
-            deletePostTask.Wait();
-            Assert.IsNull(postRepo.GetEntry(post.Id).Result);
+            var entryToUpdate = new JournalEntry("Entry To Update", "test title", "Ttiamus");
+            entryRepo.CreateEntry(entryToUpdate).Wait();
+
+            var entry = new JournalEntry("CanUpdateEntryTest", "test title", "Ttiamus") {Id = entryToUpdate.Id};
+
+
+            var updateEntryTask = entryRepo.UpdateEntry(entry);
+            updateEntryTask.Wait();
+            Assert.AreEqual("CanUpdateEntryTest", entryRepo.GetEntry(entryToUpdate.Id).Result.Body);
+        }
+
+        [TestMethod]
+        public void CanDeleteEntry()
+        {
+            var entryRepo = new JournalRepo();
+            var entry = new JournalEntry("CanDeleteEntry test", "test title", "Ttiamus");
+            entryRepo.CreateEntry(entry).Wait();
+
+            var deleteEntryTask = entryRepo.DeleteEntry(entry.Id);
+            deleteEntryTask.Wait();
+            Assert.IsNull(entryRepo.GetEntry(entry.Id).Result);
         }
     }
 

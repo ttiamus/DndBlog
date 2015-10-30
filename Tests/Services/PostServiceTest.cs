@@ -8,72 +8,90 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace DAL.Tests.Services
 {
     [TestClass]
-    public class PostServiceTest
+    public class JournalServiceTest
     {
         [TestMethod]
-        public void CanSavePost()
+        public void CanSaveEntry()
         {
-            var post = new JournalEntry("UnitTestEntry", "test title", "Ttiamus");
-            PostService postService = new PostService();
+            var entry = new JournalEntry("UnitTestEntry", "test title", "Ttiamus");
+            JournalService entryService = new JournalService();
 
-            var insertTask = postService.CreatePost(post);
+            var insertTask = entryService.CreateEntry(entry);
 
             Assert.IsTrue(insertTask.Result);
         }
 
         [TestMethod]
-        public void CanGetAllPosts()
+        public void CanGetAllEntries()
         {
-            PostService postService = new PostService();
+            JournalService entryService = new JournalService();
 
-            var postToInsert = new JournalEntry("CanGetAllEntries", "test title", "Ttiamus");
-            postService.CreatePost(postToInsert).Wait();
+            var entryToInsert = new JournalEntry("CanGetAllEntries", "test title", "Ttiamus");
+            entryService.CreateEntry(entryToInsert).Wait();
 
-            var getAllPostTask = postService.GetEntries();
-            var posts = getAllPostTask.Result.ToList();
-            Assert.IsTrue(posts.Count > 0);
+            var getAllEntryTask = entryService.GetEntries();
+            var entries = getAllEntryTask.Result.ToList();
+            Assert.IsTrue(entries.Count > 0);
         }
 
         [TestMethod]
-        public void CanGetPost()
+        public void CanGetTopEntries()
         {
-            PostService postService = new PostService();
+            JournalService entryService = new JournalService();
 
-            var postToInsert = new JournalEntry("UnitTestEntry", "test title", "Ttiamus");
+            var entryToInsert = new JournalEntry("CanGetAllEntries", "test title", "Ttiamus");
 
-            postService.CreatePost(postToInsert).Wait();
+            for (var i = 0; i <= 5; i++)
+            {
+                entryService.CreateEntry(entryToInsert).Wait();
+            }
 
-            var post = postService.GetEntry(postToInsert.Id).Result;
+            var getAllEntryTask = entryService.GetEntries("Ttiamus", 0);
+            var entries = getAllEntryTask.Result.ToList();
+            Assert.IsTrue(entries.Count == 5);
+        }
 
-            Assert.IsTrue(string.Equals(post.Id, postToInsert.Id));
+
+        [TestMethod]
+        public void CanGetEntry()
+        {
+            JournalService entryService = new JournalService();
+
+            var entryToInsert = new JournalEntry("UnitTestEntry", "test title", "Ttiamus");
+
+            entryService.CreateEntry(entryToInsert).Wait();
+
+            var entry = entryService.GetEntry(entryToInsert.Id).Result;
+
+            Assert.IsTrue(string.Equals(entry.Id, entryToInsert.Id));
         }
 
         [TestMethod]
-        public void CanUpdatePost()
+        public void CanUpdateEntry()
         {
-            PostService postService = new PostService(); ;
+            JournalService entryService = new JournalService(); ;
 
-            var postToUpdate = new JournalEntry("Entry To Update", "test title", "Ttiamus");
-            postService.CreatePost(postToUpdate).Wait();
+            var entryToUpdate = new JournalEntry("Entry To Update", "test title", "Ttiamus");
+            entryService.CreateEntry(entryToUpdate).Wait();
 
-            var post = new JournalEntry("CanUpdateEntryTest", "test title", "Ttiamus") {Id = postToUpdate.Id };
+            var entry = new JournalEntry("CanUpdateEntryTest", "test title", "Ttiamus") {Id = entryToUpdate.Id };
 
 
-            var updatePostTask = postService.UpdateEntry(post);
-            updatePostTask.Wait();
-            Assert.AreEqual("CanUpdateEntryTest", postService.GetEntry(postToUpdate.Id).Result.Body);
+            var updateEntryTask = entryService.UpdateEntry(entry);
+            updateEntryTask.Wait();
+            Assert.AreEqual("CanUpdateEntryTest", entryService.GetEntry(entryToUpdate.Id).Result.Body);
         }
 
         [TestMethod]
-        public void CanDeletePost()
+        public void CanDeleteEntry()
         {
-            PostService postService = new PostService();
-            var post = new JournalEntry("CanDeleteEntry test", "test title", "Ttiamus");
-            postService.CreatePost(post).Wait();
+            JournalService entryService = new JournalService();
+            var entry = new JournalEntry("CanDeleteEntry test", "test title", "Ttiamus");
+            entryService.CreateEntry(entry).Wait();
 
-            var deletePostTask = postService.DeleteEntry(post.Id);
-            deletePostTask.Wait();
-            Assert.IsNull(postService.GetEntry(post.Id).Result);
+            var deleteEntryTask = entryService.DeleteEntry(entry.Id);
+            deleteEntryTask.Wait();
+            Assert.IsNull(entryService.GetEntry(entry.Id).Result);
         }
     }
 }

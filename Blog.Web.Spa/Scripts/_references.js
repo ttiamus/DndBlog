@@ -13,3 +13,4 @@
 /// <reference path="angular-route.min.js" />
 /// <reference path="bootstrap.min.js" />
 /// <reference path="jquery.min.js" />
+/// <reference path="ng-infinite-scroll.min.js" />

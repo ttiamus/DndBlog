@@ -1,6 +1,4 @@
-﻿//Define an angular module for our app
-var blogApp = angular.module("dndBlog", []);
-
+﻿
 //Define Routing for app
 //Uri /AddNewOrder -> template AddOrder.html and Controller AddOrderController
 //Uri /ShowOrders -> template ShowOrders.html and Controller AddOrderController
@@ -9,7 +7,7 @@ var blogApp = angular.module("dndBlog", []);
 
 // Code goes here
 
-var blogApp = angular.module("dndBlog", ["ngRoute"]);
+var blogApp = angular.module("dndBlog", ["ngRoute", "infinite-scroll"]);
 
 blogApp.config(["$routeProvider", "$locationProvider",
     function ($routeProvider, $locationProvider) {

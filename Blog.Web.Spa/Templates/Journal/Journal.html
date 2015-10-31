@@ -8,17 +8,16 @@
 </div>
 
 <div class="col-md-4" id="recentPosts">
-    <div ng-repeat="entry in journalCtrl.recentEntries track by entry.Id">
-        <p> Posted: {{entry.Created}}</p>
-        <p> Last Edited: {{entry.LastEdited}}</p>   <!--TODO: Only show this if it has been edited-->
-        <p> Author: {{entry.Character}}</p>
-        <p>{{entry.Body}}</p>
-        <!--TODO: Add a edit post button here-->
-        <hr /> <!--horizaontal divider-->
-    </div>
-
-    <div>
-        <input id="nextPostsBtn" class="btn btn-default pull-right" type="button" value="Next 5" ng-click="journalCtrl.getNextFiveEntries()">
+    <div infinite-scroll="journalCtrl.getNextFiveEntries()"  infinite-scroll-disabled="journalCtrl.loadingEntries" infinite-scroll-distance="1">
+        <div ng-repeat="entry in journalCtrl.recentEntries track by entry.Id">
+            <p>Posted: {{entry.Created}}</p>
+            <p>Last Edited: {{entry.LastEdited}}</p> <!--TODO: Only show this if it has been edited-->
+            <p>Author: {{entry.Character}}</p>
+            <p><pre class="journalEntry">{{entry.Body}}</pre></p>
+            <!--TODO: Add a edit post button here-->
+            <hr /> <!--horizaontal divider-->
+        </div>
+        <div style="clear: both;"></div>
     </div>
 </div>
 

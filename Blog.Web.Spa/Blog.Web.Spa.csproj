@@ -94,6 +94,7 @@
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery.min.js" />
     <None Include="Scripts\_references.js" />
+    <Content Include="Scripts\ng-infinite-scroll.min.js" />
     <Content Include="Styles\app.css" />
     <Content Include="Styles\bootstrap.min.css" />
     <Content Include="Templates\About\About.html" />

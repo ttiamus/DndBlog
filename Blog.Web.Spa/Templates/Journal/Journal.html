@@ -8,12 +8,14 @@
 </div>
 
 <div class="col-md-4" id="recentPosts">
-    <div infinite-scroll="journalCtrl.getNextFiveEntries()"  infinite-scroll-disabled="journalCtrl.loadingEntries" infinite-scroll-distance="1">
+    <div infinite-scroll="journalCtrl.infiniteScrolling()"  infinite-scroll-disabled="journalCtrl.loadingEntries" infinite-scroll-distance="1">
         <div ng-repeat="entry in journalCtrl.recentEntries track by entry.Id">
-            <p>Posted: {{entry.Created}}</p>
-            <p>Last Edited: {{entry.LastEdited}}</p> <!--TODO: Only show this if it has been edited-->
-            <p>Author: {{entry.Character}}</p>
+            <h3>{{entry.Title}}</h3>
             <p><pre class="journalEntry">{{entry.Body}}</pre></p>
+            <span>
+                <label class="pull-right date">Posted: {{entry.Created}}</label>
+                <label class="pull-right date" ng-show="entry.LastEdited">Last Edited: {{entry.LastEdited}}</label>
+            </span>
             <!--TODO: Add a edit post button here-->
             <hr /> <!--horizaontal divider-->
         </div>

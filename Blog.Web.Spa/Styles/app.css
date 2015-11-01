@@ -21,6 +21,10 @@ hr {
     padding: 0;
 }
 
+.date {
+    font-size: .75em;
+    
+}
 
 #navbar {
     padding: 0;

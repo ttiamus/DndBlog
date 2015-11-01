@@ -15,7 +15,7 @@
 
     vm.loadingEntries = false;
 
-    vm.getNextFiveEntries = function () {
+    vm.infiniteScrolling = function () {
         //TODO: Consider if no character is selected to show posts from all characters
         if (vm.loadingEntries || vm.selectedCharacter === "") {
             console.log("exit early");
@@ -23,13 +23,16 @@
         }
         vm.loadingEntries = true;
 
+        vm.getNextFiveEntries();
+    }
+
+    vm.getNextFiveEntries = function() {
         var nextUrl = "/api/Journal/?character=" + vm.selectedCharacter + "&startingIndex=" + vm.postsOnPage;
 
         $http({
             method: "GET",
             url: nextUrl
         }).then(function successCallback(response) {
-            console.log("success");
             vm.recentEntries = vm.recentEntries.concat(response.data);
             vm.postsOnPage += 5;
             vm.loadingEntries = false;
@@ -37,7 +40,6 @@
             vm.loadingEntries = false;
             //Handle when there are no posts for a given character
             //Also needs to handle when all posts are shown for a character
-            console.log("error");
         });
     }
 }

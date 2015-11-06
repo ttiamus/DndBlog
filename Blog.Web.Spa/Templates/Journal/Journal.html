@@ -13,7 +13,7 @@
             <h3>{{entry.Title}}</h3>
             <p><pre class="journalEntry">{{entry.Body}}</pre></p>
             <span>
-                <a class="pull-left" href="editEntry">Edit</a>
+                <a class="pull-left" href="/Journal/EditEntry/{{entry.Id}}">Edit</a>
                 <label class="pull-right date">Posted: {{entry.Created}}</label>
                 <label class="pull-right date" ng-show="entry.LastEdited">Last Edited: {{entry.LastEdited}}</label>
             </span>

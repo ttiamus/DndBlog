@@ -1,4 +1,4 @@
-﻿function JournalCtrl($http) {
+﻿function JournalCtrl($http, JournalService) {
     var vm = this;
 
     vm.charactersInCampaign = [

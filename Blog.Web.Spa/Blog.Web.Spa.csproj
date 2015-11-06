@@ -72,7 +72,9 @@
     <Content Include="App\controllers\Journal\JournalCtrl.js" />
     <Content Include="App\controllers\Items\QuartermasterCtrl.js" />
     <Content Include="App\directives\ShowErrors.js" />
-    <Content Include="App\servies\CommonService.js" />
+    <Content Include="App\factories\JournalFactory.js" />
+    <Content Include="App\services\CommonService.js" />
+    <Content Include="App\services\JournalService.js" />
     <Content Include="App\testRoute.js" />
     <Content Include="packages.config" />
     <Content Include="Scripts\angular-mocks.js" />
@@ -108,7 +110,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App\filters\" />
-    <Folder Include="App\servies\models\" />
+    <Folder Include="App\services\models\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

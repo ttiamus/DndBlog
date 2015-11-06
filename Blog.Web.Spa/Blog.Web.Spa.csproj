@@ -72,6 +72,7 @@
     <Content Include="App\controllers\Journal\JournalCtrl.js" />
     <Content Include="App\controllers\Items\QuartermasterCtrl.js" />
     <Content Include="App\directives\ShowErrors.js" />
+    <Content Include="App\factories\CharacterFactory.js" />
     <Content Include="App\factories\JournalFactory.js" />
     <Content Include="App\services\CommonService.js" />
     <Content Include="App\services\JournalService.js" />

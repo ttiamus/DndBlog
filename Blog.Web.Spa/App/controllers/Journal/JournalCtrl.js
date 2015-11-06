@@ -1,15 +1,10 @@
-﻿function JournalCtrl($http, JournalService) {
+﻿//Check out this for binding service variables http://stackoverflow.com/questions/16023451/binding-variables-from-service-factory-to-controllers
+
+function JournalCtrl($q, characterService, journalService) {
     var vm = this;
 
-    vm.charactersInCampaign = [
-        { "Id": "1", "Name": "Atyr" },
-        { "Id": "2", "Name": "Ttiamus" },
-        { "Id": "3", "Name": "Ovella" },
-        { "Id": "4", "Name": "Anpan" }
-    ];
+    vm.charactersInCampaign = characterService.getCharacters();
     vm.selectedCharacter = ""; 
-
-    vm.postsOnPage = 0;
 
     vm.recentEntries = [];
 
@@ -21,26 +16,23 @@
             console.log("exit early");
             return;
         }
-        vm.loadingEntries = true;
+        //vm.loadingEntries = true;
 
         vm.getNextFiveEntries();
     }
 
-    vm.getNextFiveEntries = function() {
-        var nextUrl = "/api/Journal/?character=" + vm.selectedCharacter + "&startingIndex=" + vm.postsOnPage;
+    vm.getNextFiveEntries = function () {
+        journalService.getNextEntries(characterService.getSelectedCharacter())
+            .then(function(data) {
+                vm.recentEntries = data;
+            }, function(error) {
+                console.log(error);
+            });
+    }
 
-        $http({
-            method: "GET",
-            url: nextUrl
-        }).then(function successCallback(response) {
-            vm.recentEntries = vm.recentEntries.concat(response.data);
-            vm.postsOnPage += 5;
-            vm.loadingEntries = false;
-        }, function errorCallback(response) {
-            vm.loadingEntries = false;
-            //Handle when there are no posts for a given character
-            //Also needs to handle when all posts are shown for a character
-        });
+    vm.newSelectedCharacter = function() {
+        characterService.setSelectedCharacter(vm.selectedCharacter);
+        vm.getNextFiveEntries();
     }
 }
 

@@ -60,7 +60,8 @@ namespace Blog.DAL
 
         public async Task<IEnumerable<JournalEntry>> GetEntries(string character, int startingIndex)
         {
-            return await Entries.Find(entry => entry.Character == character).SortByDescending(entry => entry.Created).Skip(startingIndex).Limit(5).ToListAsync();
+            //For some reason this wasn't working right with string compare
+            return await Entries.Find(entry => entry.Character.ToLower() == character.ToLower()).SortByDescending(entry => entry.Created).Skip(startingIndex).Limit(5).ToListAsync();
         }
 
         public async Task<bool> UpdateEntry(JournalEntry journalEntry)

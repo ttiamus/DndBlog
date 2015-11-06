@@ -1,6 +1,6 @@
 ﻿<div class="col-md-4">
     <!--TODO:consider making this use id instead. May be faster-->
-    <select ng-options="character.Name as character.Name for character in journalCtrl.charactersInCampaign" ng-model="journalCtrl.selectedCharacter" ng-change="journalCtrl.getNextFiveEntries()">
+    <select ng-options="character.Name as character.Name for character in journalCtrl.charactersInCampaign" ng-model="journalCtrl.selectedCharacter" ng-change="journalCtrl.newSelectedCharacter()">
         <option value="">
             Choose a character to view
         </option>
@@ -8,7 +8,7 @@
 </div>
 
 <div class="col-md-4" id="recentPosts">
-    <div infinite-scroll="journalCtrl.infiniteScrolling()"  infinite-scroll-disabled="journalCtrl.loadingEntries" infinite-scroll-distance="1">
+    <div infinite-scroll="journalCtrl.infiniteScrolling()" infinite-scroll-disabled="journalCtrl.loadingEntries" infinite-scroll-distance="1">
         <div ng-repeat="entry in journalCtrl.recentEntries track by entry.Id">
             <h3>{{entry.Title}}</h3>
             <p><pre class="journalEntry">{{entry.Body}}</pre></p>
@@ -18,7 +18,7 @@
                 <label class="pull-right date" ng-show="entry.LastEdited">Last Edited: {{entry.LastEdited}}</label>
             </span>
             <!--TODO: Add a edit post button here-->
-            <hr /> <!--horizaontal divider-->
+            <hr/> <!--horizaontal divider-->
         </div>
         <div style="clear: both;"></div>
     </div>

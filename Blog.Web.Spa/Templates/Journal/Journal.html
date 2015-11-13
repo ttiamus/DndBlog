@@ -9,18 +9,8 @@
 
 <div class="col-md-4" id="recentPosts">
     <div infinite-scroll="journalCtrl.infiniteScrolling()" infinite-scroll-disabled="journalCtrl.loadingEntries" infinite-scroll-distance="1">
-        <div ng-repeat="entry in journalCtrl.recentEntries track by entry.Id">
-            <h3>{{entry.Title}}</h3>
-            <p><pre class="journalEntry">{{entry.Body}}</pre></p>
-            <span>
-                <a class="pull-left" href="/Journal/EditEntry/{{entry.Id}}">Edit</a>
-                <label class="pull-right date">Posted: {{entry.Created}}</label>
-                <label class="pull-right date" ng-show="entry.LastEdited">Last Edited: {{entry.LastEdited}}</label>
-            </span>
-            <!--TODO: Add a edit post button here-->
-            <hr/> <!--horizaontal divider-->
+        <div class="clearfix" ng-repeat="entry in journalCtrl.recentEntries track by entry.Id" entry>
         </div>
-        <div style="clear: both;"></div>
     </div>
 </div>
 

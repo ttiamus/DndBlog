@@ -4,6 +4,7 @@
 /// <reference path="../app/controllers/journal/journalctrl.js" />
 /// <reference path="../app/controllers/journal/newentryctrl.js" />
 /// <reference path="../App/controllers/NavCtrl.js" />
+/// <reference path="../app/directives/entry.js" />
 /// <reference path="../app/directives/showerrors.js" />
 /// <reference path="../app/factories/characterfactory.js" />
 /// <reference path="../app/factories/journalfactory.js" />

@@ -1,0 +1,34 @@
+﻿<div class="entryWrapper">
+    <div ng-hide="editing">
+        <h3>{{entry.Title}}</h3>
+        <p><pre class="journalEntry">{{entry.Body}}</pre></p>
+        <span>
+            <a class="pull-left" ng-click="editing = true">Edit</a>
+            <label class="pull-right date">Posted: {{entry.Created}}</label>
+            <label class="pull-right date" ng-show="entry.LastEdited">Last Edited: {{entry.LastEdited}}</label>
+        </span>
+    </div>
+
+    <div class="entryEditWrapper clearfix" ng-show="editing">
+        <form class="form-horizontal" id="editEntryForm" name="editEntryForm" novalidate>
+            <div class="form-group" show-errors>
+                <div>
+                    <input type="text" class="form-control" placeholder="Title" name="title" ng-model="entry.Title" required>
+                </div>
+            </div>
+
+            <!--Investigate auto-resizing this textbox to grow-->
+            <div class="form-group" show-errors>
+                <div>
+                    <pre><textarea class="form-control entryTextArea" rows="8" name="body" ng-model="entry.Body" required></textarea></pre>
+                </div>
+            </div>
+
+            <div class="pull-right">
+                <input class="btn btn-default pull-right" type="button" value="Save" ng-click="editing = false; journalCtrl.updateEntry(entry)">
+            </div>
+        </form>
+    </div>
+    
+    <hr />
+</div>

@@ -4,35 +4,53 @@ function JournalCtrl($q, characterService, journalService) {
     var vm = this;
 
     vm.charactersInCampaign = characterService.getCharacters();
-    vm.selectedCharacter = ""; 
-
+    
     vm.recentEntries = [];
 
     vm.loadingEntries = false;
 
     vm.infiniteScrolling = function () {
         //TODO: Consider if no character is selected to show posts from all characters
-        if (vm.loadingEntries || vm.selectedCharacter === "") {
-            console.log("exit early");
+        if (vm.loadingEntries || !vm.selectedCharacter) {
             return;
         }
-        //vm.loadingEntries = true;
 
         vm.getNextFiveEntries();
     }
 
     vm.getNextFiveEntries = function () {
+        vm.loadingEntries = true;
+
         journalService.getNextEntries(characterService.getSelectedCharacter())
-            .then(function(data) {
-                vm.recentEntries = data;
+            .then(function(entries) {
+                vm.recentEntries = entries;
+                vm.loadingEntries = false;
             }, function(error) {
-                console.log(error);
+                if (error !== 404) {
+                    vm.recentEntries = error;
+                    //vm.loadingEntries = false;
+                }
             });
     }
 
     vm.newSelectedCharacter = function() {
         characterService.setSelectedCharacter(vm.selectedCharacter);
-        vm.getNextFiveEntries();
+
+        if (vm.selectedCharacter === null) {
+            vm.recentEntries = [];
+        } else {
+            journalService.getEntries(vm.selectedCharacter)
+                .then(function(entries) {
+                    vm.recentEntries = entries;
+                }, function(error) {
+                    vm.recentEntries = "No posts found for character " + vm.selectedCharacter;
+                });
+        }
+    }
+
+    vm.updateEntry = function(entry) {
+        entry.LastEdited = new Date().toDateString();
+        console.log(entry);
     }
 }
 

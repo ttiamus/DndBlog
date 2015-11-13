@@ -40,6 +40,10 @@ pre {
     
 }
 
+.entryTextArea {
+    word-break: normal;
+}
+
 #navbar {
     padding: 0;
 }

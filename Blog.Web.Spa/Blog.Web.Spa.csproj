@@ -71,6 +71,7 @@
     <Content Include="App\controllers\Journal\NewEntryCtrl.js" />
     <Content Include="App\controllers\Journal\JournalCtrl.js" />
     <Content Include="App\controllers\Items\QuartermasterCtrl.js" />
+    <Content Include="App\directives\Entry.js" />
     <Content Include="App\directives\ShowErrors.js" />
     <Content Include="App\factories\CharacterFactory.js" />
     <Content Include="App\factories\JournalFactory.js" />
@@ -102,6 +103,7 @@
     <Content Include="Styles\bootstrap.min.css" />
     <Content Include="Templates\About\About.html" />
     <Content Include="Templates\Items\Quartermaster.html" />
+    <Content Include="Templates\Journal\Entry.html" />
     <Content Include="Templates\Journal\NewEntry.html" />
     <Content Include="Templates\Journal\Journal.html" />
     <Content Include="Web.config" />
